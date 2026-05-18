@@ -152,7 +152,7 @@ All experiments use modular arithmetic tasks on 2-layer MLPs (128 or 512 hidden 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\columnwidth]{results/grokking_spectral.png}
+  \includegraphics[width=\columnwidth]{figures/fig1_detection.png}
   \caption{Experiment 1: Detection. $\lambda_2$, AR1, variance ratio, and entropy across 50,000 training steps. The grok at step 21,151 (dashed vertical line) is preceded by 21,000 steps of structural preparation visible in $\lambda_2$ and AR1. The loss function is flat until the transition.}
   \label{fig:detection}
 \end{figure}
@@ -167,7 +167,7 @@ The classification rule: slow monotonic rise = beneficial transition; rapid chan
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\columnwidth]{results/classification.png}
+  \includegraphics[width=\columnwidth]{figures/fig2_classification.png}
   \caption{Experiment 2: Classification. Top: $\lambda_2$ trajectory across both phases. The phase transition from grokking (Phase 1) to catastrophic forgetting (Phase 2) is visible as a dip followed by explosive climb — a distinct shape from the monotonic rise of grokking. Bottom: accuracy. The structural signal (dip at step 25,051) precedes accuracy collapse by several hundred steps.}
   \label{fig:classification}
 \end{figure}
@@ -196,7 +196,7 @@ $\lambda_2$ moved by 0.02 in the steered condition versus 50.5 in the unsteered 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\columnwidth]{results/steering.png}
+  \includegraphics[width=\columnwidth]{figures/fig3_steering.png}
   \caption{Experiment 3: Steering. $\lambda_2$ trajectory and accuracy for steered versus unsteered conditions. The intervention fires before accuracy collapse (dashed vertical line), holding $\lambda_2$ near its Phase 1 value while the unsteered condition undergoes structural violence.}
   \label{fig:steering}
 \end{figure}
@@ -228,7 +228,7 @@ Controller deficit: 0.000 throughout. Replay: 10\% baseline throughout. The 48$\
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\columnwidth]{results/compounding_v6_multihead.png}
+  \includegraphics[width=\columnwidth]{figures/fig4_compounding.png}
   \caption{Experiment 4 (v6): Multi-head compounding. Accuracy for all three tasks across all phases. Tasks B and C grok in 110 and 101 steps respectively, compared to 4,869 for Task A — structural priming compressing subsequent learning by 48$\times$.}
   \label{fig:compounding}
 \end{figure}
@@ -259,7 +259,7 @@ The bridging curriculum completely prevented catastrophic forgetting that was to
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\columnwidth]{results/transformer_step5.png}
+  \includegraphics[width=\columnwidth]{figures/fig5_curriculum.png}
   \caption{Experiment 5: Preemptive curriculum on transformer. Top: compatibility scores — logic (C) correctly scored as higher disruption risk than reversed arithmetic (B). Middle: $\lambda_2$ trajectory. Bottom: accuracy for both conditions. Direct introduction causes total forgetting of Task A; bridged introduction preserves it completely.}
   \label{fig:curriculum}
 \end{figure}
