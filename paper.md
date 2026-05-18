@@ -4,7 +4,7 @@
 
 *Independent researcher. Southend-on-Sea, United Kingdom.*
 
-*Patent application GB2611542.8, filed 18 May 2026.*
+*Patent application GB2611542.8, filed 18 May 2026 (pending).*
 
 ---
 

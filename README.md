@@ -79,4 +79,4 @@ The `results/` directory contains all plots and CSVs from the paper runs. Checkp
 
 ---
 
-Patent application GB2611542.8 filed 18 May 2026. Copyright © 2025-2026 Richard Benfield. Code released for academic reproducibility.
+Patent application GB2611542.8 filed 18 May 2026 (pending). Copyright © 2025-2026 Richard Benfield. Code released for academic reproducibility.
