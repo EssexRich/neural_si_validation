@@ -23,4 +23,4 @@ Permission is granted to use, copy, and run the code in this repository **for th
 
 ---
 
-For licensing enquiries: richard@th4ts3cur1ty.company
+For licensing enquiries: rich.benfield@gmail.com
