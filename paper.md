@@ -10,7 +10,7 @@
 
 ## Abstract
 
-We present a method for real-time monitoring of neural network weight graph topology during training using graph spectral analysis and early warning indicators from complex systems science. The method constructs a weighted graph from the network's weight matrices, computes the Fiedler value (second-smallest eigenvalue of the graph Laplacian), and applies Scheffer critical slowing down indicators (AR1 autocorrelation, variance ratio) to the Fiedler trajectory. We demonstrate five capabilities on modular arithmetic tasks (2-layer MLP) and sequence prediction tasks (1-layer transformer): (1) detection of approaching grokking 21,000 training steps before the loss function, exceeding the success criterion by 200x; (2) classification of approaching transitions as beneficial (generalisation) or destructive (catastrophic forgetting) via distinct structural fingerprints in the Fiedler trajectory; (3) prevention of catastrophic forgetting with 91.7% knowledge retention versus 2.6% without intervention, using Fiedler-sensitivity-guided layer freezing; (4) compounding of three sequential grokking events with 48x acceleration and near-perfect simultaneous retention (100%, 100%, 97.5%) using multi-head architecture with structural monitoring; and (5) preemptive curriculum design using a structural compatibility score that correctly ranks task disruption risk, with bridging curriculum preserving 100% of prior knowledge versus 0% under direct introduction. The framework applies identical mathematics across architectures and task domains. All code and data are available for reproduction.
+We present a method for real-time monitoring of neural network weight graph topology during training using graph spectral analysis and early warning indicators from complex systems science. The method constructs a weighted graph from the network's weight matrices, computes the Fiedler value (second-smallest eigenvalue of the graph Laplacian), and applies Scheffer critical slowing down indicators (AR1 autocorrelation, variance ratio) to the Fiedler trajectory. We demonstrate five capabilities on modular arithmetic tasks (2-layer MLP) and sequence prediction tasks (1-layer transformer): (1) detection of approaching grokking 21,000 training steps before the loss function, exceeding the success criterion by 200x; (2) classification of approaching transitions as beneficial (generalisation) or destructive (catastrophic forgetting) via distinct structural fingerprints in the Fiedler trajectory; (3) prevention of catastrophic forgetting with 91.7% knowledge retention versus 2.6% without intervention, using Fiedler-sensitivity-guided layer freezing; (4) compounding of three sequential grokking events with 48x acceleration and near-perfect simultaneous retention (100%, 100%, 97.5%) using multi-head architecture with structural monitoring; and (5) preemptive curriculum design using a structural compatibility score that correctly ranks task disruption risk, with bridging curriculum preserving 100% of prior knowledge versus 0% under direct introduction. On the two architectures and task domains tested, the framework applies identical mathematics without modification. All code and data are available for reproduction.
 
 ---
 
@@ -18,7 +18,7 @@ We present a method for real-time monitoring of neural network weight graph topo
 
 Neural network training is performed without real-time structural monitoring of the weight graph. The primary feedback signal is the loss function, which measures output performance but provides no information about the internal structural state of the network. Phase transitions during training, including sudden generalisation (grokking; Power et al., 2022), catastrophic forgetting (McCloskey and Cohen, 1989; French, 1999), and mode collapse, are detected by the loss function only after they have occurred.
 
-This paper introduces a structural monitoring framework that applies graph spectral analysis and complex systems early warning indicators to the weight graph of neural networks during training. The framework detects approaching phase transitions before they manifest in output metrics, classifies them as beneficial or destructive, and steers the training process to compound beneficial transitions while preventing destructive ones.
+This paper introduces a structural monitoring framework that applies graph spectral analysis and complex systems early warning indicators to the weight graph of neural networks during training. On the tasks and architectures tested, the framework detects approaching phase transitions before they manifest in output metrics, classifies them as beneficial or destructive, and steers the training process to compound beneficial transitions while preventing destructive ones.
 
 The method originates from cross-domain structural topology detection. The same mathematical framework has been applied to financial market correlation graphs, epidemiological monitoring, and geophysical systems (Benfield, 2025-2026), in each case detecting approaching phase transitions from the spectral properties of the system's correlation graph. Neural network weight graphs are a natural extension: the weights define a graph, the graph has spectral properties, and those properties change during training in ways that precede observable changes in output metrics.
 
@@ -86,6 +86,8 @@ A phase transition is detected when AR1 exceeds a calibrated threshold and VR > 
 
 - **Beneficial (generalisation)**: slow monotonic lambda_2 rise, rate < 0.002/step.
 - **Destructive (catastrophic forgetting)**: rapid lambda_2 change with preceding dip signature, rate > 0.004/step.
+
+These thresholds were calibrated on the experiments described in Section 4 and may require recalibration for different architectures or tasks.
 
 Severity is assessed via lambda_2 delta at 100 steps post-detection: positive delta indicates recovery (mild); negative delta indicates continuing degradation (severe).
 
@@ -185,7 +187,7 @@ The bridging curriculum completely prevented catastrophic forgetting that was to
 
 The lambda_2 trajectory during grokking is a continuous, monotonic correlate of generalisation forming in the weight graph. The network's algebraic connectivity increases steadily for 21,000 steps while the loss function shows nothing. The grok is not a sudden event in the topology. It is the moment that sustained structural preparation manifests in output metrics.
 
-This has practical implications: lambda_2 can serve as a training progress indicator that is independent of loss and accuracy. A rising lambda_2 indicates the weight graph is building the cross-cluster connectivity needed for generalisation, even when the loss curve is flat.
+This has practical implications: in this setting, lambda_2 serves as a training progress indicator that is independent of loss and accuracy. A rising lambda_2 indicates the weight graph is building the cross-cluster connectivity needed for generalisation, even when the loss curve is flat. Whether this holds at larger scale is an open question.
 
 ### 5.2 Grokking Versus Forgetting: Shape, Not Direction
 
@@ -193,7 +195,7 @@ The initial prediction was that lambda_2 would rise for grokking and fall for fo
 
 ### 5.3 The Replay Trap
 
-The v1-v5 iterations of Experiment 4 characterise a failure mode of proportional replay on capacity-limited single-head networks. This is a genuine contribution to the continual learning literature: the mechanism is precisely identified (accuracy deficit drives replay, which starves new-task gradients, which maintains the deficit), the root cause is architectural (output layer competition, not controller tuning), and the resolution is a one-structural-change fix (multi-head readout). The structural monitoring framework correctly diagnosed the problem as architectural rather than dynamic, which existing continual learning methods cannot do.
+The v1-v5 iterations of Experiment 4 characterise a failure mode of proportional replay on capacity-limited single-head networks. This is a genuine contribution to the continual learning literature: the mechanism is precisely identified (accuracy deficit drives replay, which starves new-task gradients, which maintains the deficit), the root cause is architectural (output layer competition, not controller tuning), and the resolution is a one-structural-change fix (multi-head readout). The structural monitoring framework correctly diagnosed the problem as architectural rather than dynamic — a diagnosis that methods operating without structural visibility cannot make directly.
 
 ### 5.4 Structural Priming and Grokking Acceleration
 
@@ -213,7 +215,7 @@ All experiments use toy tasks (modular arithmetic, simple sequence prediction) o
 
 We have demonstrated that the structural topology of neural network weight graphs, monitored via Fiedler value analysis and Scheffer early warning indicators, provides a predictive signal for phase transitions during training that precedes the loss function by orders of magnitude. The framework detects, classifies, prevents, compounds, and preemptively manages these transitions through five validated experimental steps.
 
-The same mathematical framework applies across architectures (MLP and transformer) and task domains (modular arithmetic and language-like sequence prediction) without modification, consistent with the universality of critical slowing down indicators in complex systems.
+The same mathematical framework applied across the two architectures (MLP and transformer) and two task domains (modular arithmetic and language-like sequence prediction) tested without modification. This is consistent with, though not yet evidence for, the universality of critical slowing down indicators observed in other complex systems.
 
 The core finding is that shape is signal: the structural topology of the weight graph encodes information about approaching phase transitions that is not available in the loss function. Monitoring this topology in real time enables a class of training interventions that are impossible when the loss function is the only feedback signal.
 

@@ -9,7 +9,7 @@ Richard Benfield, 2026.
 
 ## Overview
 
-Five sequential experiments demonstrating that the Fiedler value (second-smallest eigenvalue of the weight graph Laplacian), combined with Scheffer critical slowing down indicators, provides a predictive signal for phase transitions during neural network training that precedes the loss function by orders of magnitude.
+Five sequential experiments on toy tasks (modular arithmetic, simple sequence prediction) and small architectures (128–512 unit MLPs, 40K-parameter transformer), demonstrating that the Fiedler value (second-smallest eigenvalue of the weight graph Laplacian), combined with Scheffer critical slowing down indicators, provides a predictive signal for phase transitions during training that precedes the loss function. Results are specific to the tasks and architectures tested; generalisation to production-scale training is unvalidated.
 
 ---
 
