@@ -66,15 +66,6 @@ The `results/` directory contains all plots and CSVs from the paper runs. Checkp
 
 ---
 
-## Citation
-
-```bibtex
-@article{benfield2026nsi,
-  title={Structural Topology Monitoring Predicts and Steers Neural Network Phase Transitions},
-  author={Benfield, Richard},
-  year={2026},
-  note={arXiv preprint}
-}
 ```
 
 ---
