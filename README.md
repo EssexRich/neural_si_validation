@@ -64,8 +64,6 @@ Results (CSV + PNG) are saved to `results/`.
 
 The `results/` directory contains all plots and CSVs from the paper runs. Checkpoints are not included due to size but are reproducible from the scripts above.
 
----
-
 ```
 
 ---
